@@ -1,6 +1,6 @@
 {
   "name": "@danilotorchio/node-ts-server",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Simple and minimalist Express.js server made with Typescript and a collection of decorators.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
