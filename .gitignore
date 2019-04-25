@@ -1,0 +1,7 @@
+# Misc
+node_modules
+package-lock.json
+dist
+
+nodemon.json
+danilotorchio-node-ts-server*.tgz

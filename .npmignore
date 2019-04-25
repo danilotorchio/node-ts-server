@@ -1,0 +1,7 @@
+src/**/*.js
+src/**/*.js.map
+
+nodemon.json
+tslint.json
+
+.gitignore
