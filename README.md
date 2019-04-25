@@ -39,7 +39,7 @@ import { ServerSettings, ServerLoader } from '@danilotorchio/node-ts-server';
 export class Server extends ServerLoader {
 
   start() {
-    super.startHttpServer(); // You can optionally pass a callback function to be executed after the server starts.
+    super.startHttpServer(); // You can optionally pass a callback function.
   }
 }
 ```
