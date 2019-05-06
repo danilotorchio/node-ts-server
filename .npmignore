@@ -5,3 +5,7 @@ nodemon.json
 tslint.json
 
 .gitignore
+.nyc_output
+
+test
+coverage

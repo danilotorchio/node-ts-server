@@ -12,15 +12,23 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import globby from 'globby';
 import path from 'path';
+import chalk from 'chalk';
 
-export abstract class ServerLoader {
+import { EventEmitter } from 'events';
+
+export abstract class ServerLoader extends EventEmitter {
 
   protected readonly settings: IServerSettings;
+
+  get httpServer(): Server { return this._httpServer; }
+  get expressApp(): express.Application { return this._expressApp; }
 
   private _httpServer: Server;
   private _expressApp: express.Application;
 
   constructor() {
+    super();
+
     this.settings = Reflect.getOwnMetadata(SERVER_SETTINGS, getClass(this));
     assert.ok(this.settings, new Error('Settings not defined'));
 
@@ -62,6 +70,8 @@ export abstract class ServerLoader {
   }
 
   private async _setupControllers() {
+    if (!this.settings.controllersPath) return console.log(chalk.red('Warning! Path to controllers not defined...'));
+
     const files = globby.sync(`${path.resolve(this.settings.controllersPath)}/*`);
     const ctrlInstances: any[] = [];
 
@@ -77,6 +87,7 @@ export abstract class ServerLoader {
     }
 
     this._loadControllers(ctrlInstances);
+    this.emit('routesMounted');
   }
 
   private _loadControllers(controllers: InstanceType<any> | Array<InstanceType<any>>): void {

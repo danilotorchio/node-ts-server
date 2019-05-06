@@ -5,3 +5,6 @@ dist
 
 nodemon.json
 danilotorchio-node-ts-server*.tgz
+
+.nyc_output
+coverage
